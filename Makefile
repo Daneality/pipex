@@ -6,14 +6,14 @@
 #    By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 20:10:07 by dsas              #+#    #+#              #
-#    Updated: 2023/01/31 19:07:33 by dsas             ###   ########.fr        #
+#    Updated: 2023/01/31 20:36:47 by dsas             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation
 NAME = pipex
 CC = gcc
-#CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g
 DEBUG = -fsanitize=address
 LEAKS = leaks -atExit -- ./push-swap
 
