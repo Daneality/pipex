@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/27 18:05:14 by dsas              #+#    #+#             */
+/*   Updated: 2023/01/10 11:33:47 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	pid_t	pid;
-	int		fd[2];
+	size_t	str_len;
+	char	*res;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
-	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
-	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	if (!s)
+		return (NULL);
+	str_len = ft_strlen(s);
+	if (str_len < start)
+		return (ft_strdup(""));
+	else if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	res = (char *) malloc(len + 1);
+	if (res == NULL)
+		return (NULL);
+	ft_strlcpy(res, s + start, len + 1);
+	return (res);
 }

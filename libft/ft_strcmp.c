@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/07/25 15:51:26 by dsas              #+#    #+#             */
+/*   Updated: 2022/07/25 22:22:19 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-
-
-
-int	main(int argc, char **argv, char **env)
+int	ft_strcmp(char *s1, char *s2)
 {
-	pid_t	pid;
-	int		fd[2];
+	int	i;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
-	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
-	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
 }

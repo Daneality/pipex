@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/26 14:17:21 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/26 14:21:44 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	pid_t	pid;
-	int		fd[2];
+	size_t	i;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	i = 0;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (i < n)
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	return (dest);
 }

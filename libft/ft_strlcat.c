@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/12 18:38:46 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/12 18:42:39 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	pid_t	pid;
-	int		fd[2];
+	size_t	dest_len;
+	size_t	src_len;
+	size_t	i;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	i = 0;
+	dest_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (size == 0 || size <= dest_len)
+		return (size + src_len);
+	while (src[i] != '\0' && i < size - dest_len - 1)
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		dst[dest_len + i] = src[i];
+		i++;
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	dst[dest_len + i] = '\0';
+	return (dest_len + src_len);
 }

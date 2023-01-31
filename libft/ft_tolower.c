@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/12 16:52:15 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/12 17:15:41 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+int	ft_tolower(int c)
 {
-	pid_t	pid;
-	int		fd[2];
-
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	if (c >= 'A' && c <= 'Z')
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		return (c + 32);
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	return (c);
 }

@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/12 19:00:39 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/25 15:47:30 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+char	*ft_strnstr(const char *s, const char *find, size_t slen)
 {
-	pid_t	pid;
-	int		fd[2];
+	size_t	i;
+	size_t	j;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	i = 0;
+	if (find[0] == '\0')
+		return ((char *) s);
+	while (s[i] != '\0')
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		j = 0;
+		while (s[i + j] == find[j] && (i + j) < slen)
+		{
+			if (find[j] == '\0' && s[i + j] == '\0')
+				return ((char *) &s[i]);
+			j++;
+		}
+		if (find[j] == '\0')
+			return ((char *) &s[i]);
+		i++;
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	return (NULL);
 }

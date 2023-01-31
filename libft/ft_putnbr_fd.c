@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/28 16:37:44 by dsas              #+#    #+#             */
+/*   Updated: 2023/01/10 10:47:28 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+void	ft_putnbr_fd(int n, int fd)
 {
-	pid_t	pid;
-	int		fd[2];
+	int		sign;
+	char	c;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	sign = 1;
+	if (n < 0)
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		ft_putchar_fd('-', fd);
+		sign = -1;
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	if (n / 10)
+		ft_putnbr_fd(n / 10 * sign, fd);
+	c = n % 10 * sign + '0';
+	ft_putchar_fd(c, fd);
 }

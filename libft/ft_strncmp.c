@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/07/25 16:13:38 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/25 15:35:20 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	pid_t	pid;
-	int		fd[2];
+	size_t	i;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i] && n > i + 1)
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		i++;
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
 }

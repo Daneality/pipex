@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/07/26 14:03:04 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/26 15:19:52 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+int	ft_atoi(const char *nptr)
 {
-	pid_t	pid;
-	int		fd[2];
+	int	sign;
+	int	i;
+	int	sum;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	sum = 0;
+	sign = 1;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
 	}
-	else
+	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		wait(0);
-		ft_printf("child should have finished\n");
+		sum *= 10;
+		sum += nptr[i] - '0';
+		i++;
 	}
+	sum *= sign;
+	return (sum);
 }

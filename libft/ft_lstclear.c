@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/28 17:20:03 by dsas              #+#    #+#             */
+/*   Updated: 2023/01/10 11:02:52 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	pid_t	pid;
-	int		fd[2];
+	t_list	*current;
+	t_list	*next;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	current = *lst;
+	while (current)
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		next = current->next;
+		ft_lstdelone(current, del);
+		current = next;
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	*lst = NULL;
 }

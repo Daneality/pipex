@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/28 17:06:29 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/28 17:15:54 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	pid_t	pid;
-	int		fd[2];
-
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
-	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
-	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	if (!new || !lst)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

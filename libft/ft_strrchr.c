@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 18:50:33 by dsas             ###   ########.fr       */
+/*   Created: 2022/12/12 17:14:24 by dsas              #+#    #+#             */
+/*   Updated: 2022/12/12 17:19:28 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+char	*ft_strrchr(const char *s, int c)
 {
-	pid_t	pid;
-	int		fd[2];
+	int	i;
+	int	len;
 
-	ft_printf("creating a child\n");
-	pid = fork();
-	if (pid == 0)
+	len = ft_strlen(s);
+	i = -1;
+	while (++i <= len)
 	{
-		ft_printf("I am a child, sleeping\n");
-		sleep (20);
-		ft_printf("I had enough sleep\n");
+		if (s[len - i] == (unsigned char) c)
+			return ((char *) &s[len - i]);
 	}
-	else
-	{
-		wait(0);
-		ft_printf("child should have finished\n");
-	}
+	return (NULL);
 }
