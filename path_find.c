@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:07:04 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 19:52:09 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/01 13:47:29 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_working_path(char *cmd, char **env)
 		one_path = ft_strjoin(binary_paths[i], "/");
 		one_command_path = ft_strjoin(one_path, cmd);
 		free(one_path);
-		if (access(one_command_path, F_OK))
+		if (!access(one_command_path, F_OK))
 		{
 			ft_free_strings(binary_paths);
 			return (one_command_path);

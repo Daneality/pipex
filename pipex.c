@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 20:58:10 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/01 15:52:37 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int check_commands(int argc, char **argv, char **env)
 	char	*command_path;
 
 	i = 1;
-	while (++i <= argc - 1)
+	while (++i < argc - 1)
 	{
 		split_command = ft_split(argv[i], ' ');
-		command_path = get_working_path(split_command[i], env);
+		command_path = get_working_path(split_command[0], env);
 		if (!command_path)
 		{
 			ft_free_strings(split_command);
-			write(2, "Invalid command!", 17);
+			write(2, "Invalid command!\n", 18);
 			exit(0);
 		}
 		else
@@ -38,8 +38,14 @@ int check_commands(int argc, char **argv, char **env)
 	return (1);
 }
 
+void	open_files(int argc, char **argv)
+{
+	
+}
+
 int	main(int argc, char **argv, char **env)
 {
+	t_pipex ppx;
 
 
 	check_commands(argc, argv, env);

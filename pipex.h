@@ -6,12 +6,19 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:30:15 by dsas              #+#    #+#             */
-/*   Updated: 2023/01/31 19:52:20 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/01 15:38:14 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
+
+typedef	struct s_pipex
+{
+	int		infile;
+	int		outfile;
+	int		here_doc;
+} t_pipex;
 
 # include <time.h>
 # include <unistd.h>
