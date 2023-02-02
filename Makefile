@@ -6,7 +6,7 @@
 #    By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 20:10:07 by dsas              #+#    #+#              #
-#    Updated: 2023/02/02 14:55:35 by dsas             ###   ########.fr        #
+#    Updated: 2023/02/02 19:20:05 by dsas             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ_PATH = obj/
 LIBFTPRINTF = libft
 
 # Source and object files
-SRCS =	pipex.c path_find.c get_files.c
+SRCS =	pipex.c path_find.c get_files.c error.c
 
 OBJ = $(SRCS:.c=.o)
 

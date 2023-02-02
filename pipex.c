@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/02 17:27:56 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/02 19:25:19 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,18 @@ int check_commands(int argc, char **argv, char **env)
 	return (1);
 }
 
-void	open_files(int argc, char **argv)
-{
-	
-}
 
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex ppx;
 
-	
+	if (env)
+		printf("kaif");
+	if (!get_infile(argv, &ppx))
+	{
+		msg_error("Error with input file");
+		ppx.in_status = 0;	
+	}
+	get_outfile(argv[argc - 1], &ppx);
+
 }
