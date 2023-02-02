@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:16:30 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/02 19:25:56 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/02 19:39:45 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ int	get_outfile(char *argv, t_pipex *pipex)
 		return (0);
 	return (1);
 }
-
