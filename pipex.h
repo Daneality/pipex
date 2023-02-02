@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:30:15 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/01 15:38:14 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/02 17:28:45 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef	struct s_pipex
 	int		infile;
 	int		outfile;
 	int		here_doc;
+	int		in_status;
 } t_pipex;
 
 # include <time.h>
@@ -32,5 +33,9 @@ typedef	struct s_pipex
 # include "libft/libft.h"
 
 char	*get_working_path(char *cmd, char **env);
+void	msg_error(char *err);
+int		get_infile(char **argv, t_pipex *pipex);
+int		get_outfile(char *argv, t_pipex *pipex);
+
 
 #endif

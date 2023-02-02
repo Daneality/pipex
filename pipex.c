@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/01 15:52:37 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/02 17:27:56 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int	main(int argc, char **argv, char **env)
 {
 	t_pipex ppx;
 
-
-	check_commands(argc, argv, env);
+	
 }

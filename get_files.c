@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:16:30 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/01 16:39:48 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/02 17:24:07 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,26 @@ int	get_outfile(char *argv, t_pipex *pipex)
 
 int	here_doc(char *limiter, t_pipex *pipex)
 {
-	
+	int		file;
+	char	*buf;
+
+	file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	if (file < 0)
+	{
+			msg_error("Heredoc open error");
+			return (-1);
+	}
+	while (1)
+	{
+		buf = get_next_line(0);
+		if (!buf)
+			return(-1);
+		if (!ft_strncmp(limiter, buf, ft_strlen(limiter) + 1))
+			break ;
+		write(file, buf, ft_strlen(buf));
+	}
+	free(buf);
+	close(file);
+	pipex->infile = open(".heredoc_tmp", O_RDONLY);
+	return (1);
 }
