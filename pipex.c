@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/03 17:47:15 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/03 18:32:59 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ int check_commands(int argc, char **argv, char **env)
 	return (1);
 }
 
+void	child(char *cmd, char **env)
+{
+	char	**cmd_split;
+	char	*path_to_cmd;
+
+	cmd_split = ft_split(cmd, ' ');
+	path_to_cmd = get_working_path(cmd, env);
+	if (execve(path_to_cmd, cmd_split, env) == -1)
+	{
+		msg_error("Error executing command");
+		free(path_to_cmd);
+		ft_free_strings(cmd_split);
+		exit(0);
+	}
+}
+
 void	pipex(char *cmd, char **env, t_pipex *ppx)
 {
 	pid_t	pid;
@@ -49,7 +65,17 @@ void	pipex(char *cmd, char **env, t_pipex *ppx)
 		msg_error("Error creating process");
 	else if(pid == 0)
 	{
-		
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+		child(cmd, env);
+	}
+	else
+	{
+		wait(NULL);
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
 	}
 }
 
