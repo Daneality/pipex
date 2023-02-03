@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:30:15 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/02 17:28:45 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/03 16:00:08 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ char	*get_working_path(char *cmd, char **env);
 void	msg_error(char *err);
 int		get_infile(char **argv, t_pipex *pipex);
 int		get_outfile(char *argv, t_pipex *pipex);
-
 
 #endif

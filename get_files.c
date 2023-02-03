@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:16:30 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/02 19:39:45 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/03 17:09:06 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	here_doc(char *limiter, t_pipex *pipex)
 		buf = get_next_line(0);
 		if (!buf)
 			return(-1);
-		if (!ft_strncmp(limiter, buf, ft_strlen(limiter) + 1))
+		if (!ft_strncmp(limiter, buf, ft_strlen(limiter)))
 			break ;
 		write(file, buf, ft_strlen(buf));
 	}
