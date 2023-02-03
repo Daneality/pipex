@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/03 18:32:59 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/03 18:36:24 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ void	child(char *cmd, char **env)
 	}
 }
 
-void	pipex(char *cmd, char **env, t_pipex *ppx)
+void	pipex(char *cmd, char **env)
 {
 	pid_t	pid;
 	int		fd[2];
 
 	if (pipe(fd) < 0)
 		msg_error("Error creating pipes");
+	pid = fork();
 	if (pid < 0)
 		msg_error("Error creating process");
 	else if(pid == 0)
