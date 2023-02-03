@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:30:15 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/03 16:00:08 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/03 17:58:16 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef	struct s_pipex
 	int		outfile;
 	int		here_doc;
 	int		in_status;
+	int 	first;
+	
 } t_pipex;
 
 # include <time.h>

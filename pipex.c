@@ -6,7 +6,7 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/03 16:05:41 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/03 17:47:15 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ int check_commands(int argc, char **argv, char **env)
 	return (1);
 }
 
+void	pipex(char *cmd, char **env, t_pipex *ppx)
+{
+	pid_t	pid;
+	int		fd[2];
+
+	if (pipe(fd) < 0)
+		msg_error("Error creating pipes");
+	if (pid < 0)
+		msg_error("Error creating process");
+	else if(pid == 0)
+	{
+		
+	}
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -45,11 +59,6 @@ int	main(int argc, char **argv, char **env)
 
 	if (env)
 		printf("kaif");
-	// if (!get_infile(argv, &ppx))
-	// {
-	// 	msg_error("Error with input file");
-	// 	ppx.in_status = 0;	
-	// }
 	get_infile(argv, &ppx);
 	get_outfile(argv[argc - 1], &ppx);
 
