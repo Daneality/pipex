@@ -6,13 +6,13 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:13:37 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/06 17:12:13 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/06 18:46:08 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void msg_error(char *err)
+void	msg_error(char *err)
 {
 	write(2, err, ft_strlen(err));
 	exit(-1);

@@ -6,15 +6,15 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/06 17:11:32 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/06 18:47:09 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int check_commands(int argc, char **argv, char **env, t_pipex *ppx)
+int	check_commands(int argc, char **argv, char **env, t_pipex *ppx)
 {
-	int	i;
+	int		i;
 	char	**split_command;
 	char	*command_path;
 
@@ -64,7 +64,7 @@ void	pipex(char *cmd, char **env)
 	pid = fork();
 	if (pid < 0)
 		msg_error("Error creating process");
-	else if(pid == 0)
+	else if (pid == 0)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
@@ -90,21 +90,23 @@ void	handling_dups(t_pipex *pipex)
 
 int	main(int argc, char **argv, char **env)
 {
-	t_pipex ppx;
-	int i;
+	t_pipex	ppx;
+	int		i;
 
 	get_infile(argv, &ppx);
 	get_outfile(argv[argc - 1], &ppx);
 	handling_dups(&ppx);
 	if (argc < 5 + ppx.here_doc)
 	{
+		if (ppx.here_doc)
+			unlink(".heredoc_tmp");
 		msg_error("Not enough parameters!");
 	}
 	check_commands(argc, argv, env, &ppx);
 	i = 2 + ppx.here_doc;
 	while (i < (argc - 2))
-	{
 		pipex(argv[i++], env);
-	}
+	if (ppx.here_doc)
+		unlink(".heredoc_tmp");
 	child(argv[i], env);
 }
