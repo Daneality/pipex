@@ -6,19 +6,19 @@
 /*   By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:48 by dsas              #+#    #+#             */
-/*   Updated: 2023/02/03 18:36:24 by dsas             ###   ########.fr       */
+/*   Updated: 2023/02/06 17:11:32 by dsas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int check_commands(int argc, char **argv, char **env)
+int check_commands(int argc, char **argv, char **env, t_pipex *ppx)
 {
 	int	i;
 	char	**split_command;
 	char	*command_path;
 
-	i = 1;
+	i = 1 + ppx->here_doc;
 	while (++i < argc - 1)
 	{
 		split_command = ft_split(argv[i], ' ');
@@ -44,7 +44,7 @@ void	child(char *cmd, char **env)
 	char	*path_to_cmd;
 
 	cmd_split = ft_split(cmd, ' ');
-	path_to_cmd = get_working_path(cmd, env);
+	path_to_cmd = get_working_path(cmd_split[0], env);
 	if (execve(path_to_cmd, cmd_split, env) == -1)
 	{
 		msg_error("Error executing command");
@@ -80,13 +80,31 @@ void	pipex(char *cmd, char **env)
 	}
 }
 
+void	handling_dups(t_pipex *pipex)
+{
+	dup2(pipex->infile, STDIN_FILENO);
+	close(pipex->infile);
+	dup2(pipex->outfile, STDOUT_FILENO);
+	close(pipex->outfile);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex ppx;
+	int i;
 
-	if (env)
-		printf("kaif");
 	get_infile(argv, &ppx);
 	get_outfile(argv[argc - 1], &ppx);
-
+	handling_dups(&ppx);
+	if (argc < 5 + ppx.here_doc)
+	{
+		msg_error("Not enough parameters!");
+	}
+	check_commands(argc, argv, env, &ppx);
+	i = 2 + ppx.here_doc;
+	while (i < (argc - 2))
+	{
+		pipex(argv[i++], env);
+	}
+	child(argv[i], env);
 }

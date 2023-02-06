@@ -6,7 +6,7 @@
 #    By: dsas <dsas@student.42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 20:10:07 by dsas              #+#    #+#              #
-#    Updated: 2023/02/02 19:20:05 by dsas             ###   ########.fr        #
+#    Updated: 2023/02/06 16:52:36 by dsas             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,10 +49,7 @@ $(NAME): $(OBJ)
 
 bonus: $(BONUS)
 
-$(BONUS): $(OBJ)
-	$(MAKE) -C $(LIBFTPRINTF) bonus
-	mv $(LIBFTPRINTF_A) libft.a
-	@$(CC) $(CFLAGS) $^ $(BONUS_MAIN) -L. -lft -o $@
+$(BONUS): $(OBJ) $(NAME)
 
 clean:
 	rm -rf $(OBJ)
